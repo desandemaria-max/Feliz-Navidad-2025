@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Felicitación — ¡Feliz Navidad!</title>
+    <meta
+      name="description"
+      content="Felicitación navideña personalizable a pantalla completa."
+    />
+    <!-- Social / Rich previews -->
+    <meta property="og:title" content="¡Feliz Navidad!" />
+    <meta
+      property="og:description"
+      content="Abre tu postal y personalízala con tu nombre."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://feliznavidad2025.w3spaces.com/"
+    />
+    <!-- Imagen de vista previa (URL ABSOLUTA a tu Space) -->
+    <meta
+      property="og:image"
+      content="https://feliznavidad2025.w3spaces.com/img/bg-desktop.png?v=4"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="¡Feliz Navidad!" />
+    <meta
+      name="twitter:description"
+      content="Abre tu postal y personalízala con tu nombre."
+    />
+    <meta
+      name="twitter:image"
+      content="https://feliznavidad2025.w3spaces.com/img/bg-desktop.png?v=4"
+    />
+    <!-- Color de la UI del navegador en móvil -->
+    <meta name="theme-color" content="#293f4a" />
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet" href="styles.css?v=41" />
+  </head>
+  <body>
+    <!-- NIEVE (detrás) -->
+    <div class="snow snow-back" aria-hidden="true"></div>
+    <!-- IMAGEN full-bleed (exportada SIN el nombre) -->
+
+    <div id="art" aria-hidden="true"></div>
+    <!-- NIEVE (delante) -->
+    <div class="snow snow-front" aria-hidden="true"></div>
+    <!-- CONTENIDO: postal navideña -->
+    <main role="main" aria-label="Felicitación navideña">
+      <h1 class="title-main">Feliz Navidad</h1>
+      <h2 class="title-sub">& Próspero Año Nuevo</h2>
+      <!-- Nombre personalizable -->
+      <div class="name"><span id="nombre"></span></div>
+      <!-- Mensaje inspirador -->
+      <p class="message">Que el año nuevo te traiga ideas bonitas <br>
+      y tiempo para crearlas</p>
+      <!-- BOTONES dentro del flujo, centrados -->
+      <div class="actions" role="group" aria-label="Acciones">
+        <button class="btn" id="openP">Personalizar</button>
+        <button class="btn ghost" id="share">Compartir</button>
+      </div>
+      <!-- Mensaje de estado (copiado, etc.) -->
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </main>
+    <!-- PANEL de personalización (minimal) -->
+    <dialog id="panel">
+      <form method="dialog" class="panel-inner" aria-labelledby="pTitle">
+        <h2 id="pTitle">Personaliza el nombre</h2>
+        <label for="nameInput" class="vh">Nombre</label>
+        <input
+          id="nameInput"
+          type="text"
+          placeholder="Escribe tu nombre..."
+          maxlength="30"
+        />
+        <div class="panel-actions">
+          <button class="btn" id="applyName">Aplicar</button>
+        </div>
+      </form>
+    </dialog>
+    <!-- FOOTER crédito + logo -->
+    <footer class="credit">
+      <span>Hecho con ♥ por <strong>Alumno/a</strong> · APGI</span>
+      <a
+        class="brand"
+        href="https://eacruznovillo.com"
+        target="_blank"
+        rel="noopener"
+        aria-label="Escuela de Arte Cruz Novillo"
+      >
+        <img src="img/logo-escuela.png?v=2" alt="Logo Escuela de Arte Cruz Novillo" />
+      </a>
+    </footer>
+    <!-- Scripts -->
+    <script src="scripts.js?v=42"></script>
+  </body>
+</html>

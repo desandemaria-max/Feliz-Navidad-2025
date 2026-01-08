@@ -1,0 +1,393 @@
+/* ===========================
+STYLES — versión fina
+=========================== */
+:root{
+/* ===== BASE ===== */
+--bg: #293f4a; /* azul oscuro noche navideña */
+--fg: #ffffff;
+
+/* Paleta */
+--c-deep: #293f4a;        /* azul 1 */
+--c-mid: #44606c;         /* azul 2 (hover botones) */
+--c-gray: #69787b;        /* azul 3 (texto/borde botones en reposo) */
+--c-soft: #a2afa9;        /* azul 4 */
+--c-gold: #bb9464;        /* cobre */
+--c-gold-soft: #69787b;   /* azul 3 */
+--c-cream: #fdf8e2;       /* crema */
+--c-white-soft: rgba(255,255,255,0.92); /* blanco suave */
+
+/* Tipografías */
+--font-ui: "Myriad Pro","MyriadPro-Regular","Myriad Variable Concept",
+"Segoe UI","Inter","Helvetica Neue",Arial,sans-serif;
+--font-title: var(--font-ui);
+--font-script: "Bradley Hand","Bradley Hand ITC","Comic Sans MS",cursive;
+
+/* ===== TÍTULOS ===== */
+--title-main-size: clamp(32px, 2.8vw, 54px); /* H1 ~53px en escritorio */
+--title-sub-size: clamp(20px, 1.6vw, 32px);  /* H2 ~30px */
+--name-size: clamp(22px, 1.6vw, 32px);       /* Nombre ~31px */
+--message-size: clamp(18px, 1.4vw, 28px);    /* Mensaje ~26px */
+
+--name-tracking: 0.35em; /* tracking 350 aprox */
+--name-color: var(--c-gold);
+--text-shadow: 0 2px 16px rgba(0,0,0,.65);
+
+/* ===== BOTONES ===== */
+--btn-font: var(--font-ui);
+--btn-text: var(--c-gray);   /* reposo */
+--btn-border: var(--c-gray); /* reposo */
+--btn-radius: 9999px;
+--btn-border-w: 1px;
+--btn-bg: transparent;       /* reposo */
+--btn-bg-hover: var(--c-mid);     /* hover: azul medio */
+--btn-text-hover: var(--c-cream); /* hover: crema */
+--btn-letter: 0.10em;        /* tracking 100 */
+
+/* Nombre↔botones */
+--actions-gap: 94px;
+
+/* ===== FOOTER ===== */
+--footer-font: var(--font-ui);
+--footer-size: 10px;
+--footer-weight: 400;
+--footer-letter: 0.15em;
+--footer-color: var(--c-soft);
+--footer-bottom: 8px;
+--footer-pad-left: 44px;
+--footer-pad-right: 196px;
+
+/* ===== DIALOG (claro) ===== */
+--panel-bg: var(--c-cream);
+--panel-fg: var(--c-mid);
+--panel-border: rgba(0,0,0,0.06);
+--panel-shadow: 0 12px 36px rgba(0,0,0,.35);
+--panel-radius: 16px;
+--panel-pad: 18px;
+--panel-gap: 12px;
+--input-bg: var(--c-cream);
+--input-fg: var(--c-mid);
+--input-ph: rgba(68,96,108,0.65);
+}
+
+/* ===== RESET Y BASE ===== */
+*{
+box-sizing: border-box;
+}
+html,body{
+height: 100%;
+}
+body{
+margin: 0;
+background: var(--bg);
+color: var(--fg);
+font-family: var(--font-ui);
+overflow-x: hidden;
+}
+
+/* ===== NIEVE ===== */
+.snow{
+position: fixed;
+inset: 0;
+pointer-events: none;
+}
+.snow-back{
+z-index: -2;
+}
+.snow-front{
+z-index: 3; /* delante */
+}
+.flake{
+position: absolute;
+top: -10px;
+background: rgba(255,255,255,.95);
+border-radius: 50%;
+filter: drop-shadow(0 0 4px rgba(255,255,255,.7));
+animation: fall linear var(--dur) infinite;
+transform: translateX(var(--x));
+}
+.snow-front .flake{
+background: rgba(255,255,255,0.98) !important;
+filter: drop-shadow(0 0 6px rgba(255,255,255,.85)) !important;
+}
+@keyframes fall{
+to{
+transform: translateX(calc(var(--x) + var(--drift)))
+           translateY(110vh);
+}
+}
+
+/* ===== IMAGEN FULL-BLEED ===== */
+#art{
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: var(--bg);
+background: url("img/bg-desktop.png?v=4") center/cover no-repeat;
+opacity: 1;
+z-index: -1;
+}
+@media (max-width: 640px){
+/* #art{ background-image: url("img/bg-mobile.png?v=3"); } */
+}
+
+/* ===== CONTENIDO ===== */
+main{
+min-height: 50dvh;  /* Solo ocupa mitad superior */
+max-height: 50dvh;  /* Límite para dejar espacio a la imagen */
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+padding: clamp(60px, 8vh, 90px) clamp(1.5rem, 5vw, 3rem) 0;
+gap: clamp(0.8rem, 2vh, 1.8rem);
+text-align: center;
+max-width: 1000px;
+margin: 0 auto;
+}
+
+/* Título principal: Feliz Navidad */
+.title-main{
+margin: 0;
+font-family: var(--font-ui);            /* Myriad Pro */
+font-size: var(--title-main-size);      /* ~53 pt */
+font-weight: 400;                       /* Regular */
+color: var(--c-gold);                   /* Cobre #bb9464 */
+text-shadow: var(--text-shadow);
+line-height: 1.1;
+letter-spacing: 0.40em;                 /* tracking amplio */
+text-transform: uppercase;
+position: relative;
+top: 5px;                               /* baja un poco el H1 sin mover el resto */
+}
+
+/* Subtítulo: & Próspero Año Nuevo */
+.title-sub{
+margin: 0;
+font-family: var(--font-ui);            /* Myriad Pro */
+font-size: var(--title-sub-size);       /* ~30.5 pt */
+font-weight: 300;                       /* Regular */
+color: var(--c-gold-soft);              /* Azul 3 #69787b */
+text-shadow: var(--text-shadow);
+line-height: 1.3;
+letter-spacing: 0.35em;                 /* tracking 350 aprox */
+}
+
+/* Nombre personalizable */
+.name{
+margin: 0;
+font-family: var(--font-title);         /* Myriad Pro */
+font-size: var(--name-size);            /* ~31 pt */
+font-weight: 400;                       /* Regular */
+letter-spacing: var(--name-tracking);   /* ~350 */
+color: var(--c-gold);                   /* Cobre */
+text-shadow: var(--text-shadow);
+line-height: 1.3;
+min-height: 1.3em;
+max-width: 100%;
+word-wrap: break-word;
+}
+.name span{
+color: inherit;
+}
+
+/* Mensaje inspirador */
+.message{
+margin: 0;
+margin-top: 0.25rem;              /* ajuste fino vertical */
+font-family: var(--font-script);  /* Bradley Hand */
+font-size: var(--message-size);   /* ~26 pt */
+font-weight: 400;
+font-style: italic;
+color: var(--c-soft);             /* Azul 4 #a2afa9 */
+text-shadow: var(--text-shadow);
+line-height: 1.5;                 /* interlineado */
+letter-spacing: 0.10em;           /* tracking ~130 */
+max-width: 90%;
+}
+
+/* ===== BOTONES ===== */
+.actions{
+display: flex;
+justify-content: center;
+align-items: center;
+gap: clamp(0.8rem, 2vw, 1.2rem);
+flex-wrap: wrap;
+margin-top: 1rem;
+}
+.btn{
+appearance: none;
+cursor: pointer;
+border: var(--btn-border-w) solid var(--btn-border);
+background: var(--btn-bg);
+color: var(--btn-text);
+font-family: var(--btn-font);
+font-weight: 400;
+letter-spacing: var(--btn-letter);
+padding: .72rem 1.05rem;
+border-radius: var(--btn-radius);
+min-width: 11ch;
+line-height: 1;
+transition:
+  background-color .2s,
+  border-color .2s,
+  color .2s,
+  transform .06s;
+}
+.btn:hover{
+background: var(--btn-bg-hover);  /* #44606c */
+color: var(--btn-text-hover);     /* crema */
+border-color: transparent;
+}
+.btn:active{
+transform: translateY(1px);
+}
+.btn:focus-visible{
+outline: 2px solid var(--c-cream);
+outline-offset: 3px;
+}
+
+/* Aviso (copiado, etc.) */
+.status{
+margin: 0;
+margin-top: 0.5rem;
+font-size: clamp(0.85rem, 2vw, 0.95rem);
+font-weight: 300;
+letter-spacing: .06em;
+color: rgba(253,248,226,.85);  /* crema + transparencia */
+text-shadow: 0 1px 8px rgba(0,0,0,.35);
+min-height: 1.2em;             /* reserva hueco */
+}
+
+/* ===== FOOTER ===== */
+.credit{
+position: fixed;
+left: 0;
+right: 0;
+bottom: var(--footer-bottom);
+display: grid;
+grid-template-columns: 1fr auto;
+align-items: flex-end;
+padding-left: var(--footer-pad-left);
+padding-right: var(--footer-pad-right);
+pointer-events: none;
+z-index: 5;
+}
+.credit span{
+justify-self: start;
+margin: 0;
+font-family: var(--footer-font);
+font-size: var(--footer-size);
+font-weight: var(--footer-weight);
+letter-spacing: var(--footer-letter);
+color: var(--footer-color);
+opacity: .95;
+text-shadow: 0 1px 6px rgba(0,0,0,.35);
+}
+.credit strong{
+font-weight: var(--footer-weight);
+}
+.credit .brand{
+justify-self: end;
+pointer-events: auto;
+line-height: 0;
+}
+.credit .brand img{
+width: 110px;
+height: auto;
+opacity: .95;
+filter: drop-shadow(0 1px 4px rgba(0,0,0,.3));
+}
+@media (max-width: 480px){
+:root{
+--footer-pad-left: 28px;
+--footer-pad-right: 34px;
+}
+.credit .brand img{
+width: 92px;
+}
+}
+
+/* ===== DIALOG (claro, minimal) ===== */
+dialog#panel{
+border: 1px solid var(--panel-border);
+background: var(--panel-bg);
+color: var(--panel-fg);
+border-radius: var(--panel-radius);
+padding: var(--panel-pad);
+box-shadow: var(--panel-shadow);
+width: min(90vw, 440px);
+backdrop-filter: blur(6px) saturate(1.05);
+}
+dialog#panel::backdrop{
+background: rgba(0,0,0,0.45);
+backdrop-filter: blur(2px);
+}
+.panel-inner{
+display: grid;
+gap: var(--panel-gap);
+font-family: var(--font-ui);
+color: var(--panel-fg);
+}
+#pTitle{
+margin: 0;
+font-size: 1rem;
+font-weight: 300;
+letter-spacing: .12em;
+color: var(--panel-fg);
+}
+
+/* ===== INPUT NOMBRE ===== */
+.vh{
+position: absolute !important;
+left: -9999px !important;
+}
+
+/* Input con borde fijo y foco claro */
+#nameInput{
+appearance: none;
+width: min(100%, 360px);
+margin-inline: auto;
+padding: .66rem .9rem;
+border-radius: 14px;
+border: 2px solid rgba(187,148,100,.8); /* contorno SIEMPRE visible */
+background: var(--input-bg);
+color: var(--input-fg);
+caret-color: var(--input-fg);
+font-family: var(--font-ui);
+font-weight: 300;
+letter-spacing: .08em;
+box-shadow: none;
+}
+#nameInput::placeholder{
+color: var(--input-ph);
+}
+#nameInput:focus{
+outline: none;
+border-color: #bb9464;                         /* cobre más intenso en foco */
+box-shadow: 0 0 6px rgba(187,148,100,.6);      /* halo suave */
+}
+
+/* Neutraliza autofill azul (WebKit) */
+#nameInput:-webkit-autofill{
+-webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset !important;
+-webkit-text-fill-color: var(--input-fg) !important;
+caret-color: var(--input-fg) !important;
+}
+
+/* Botonera del panel (solo “Aplicar”) */
+.panel-actions{
+display: flex;
+gap: .6rem;
+justify-content: flex-end;
+flex-wrap: wrap;
+}
+#applyName.btn{
+border-color: var(--btn-border);
+}
+#applyName.btn:hover{
+background: var(--btn-bg-hover);
+color: var(--btn-text-hover);
+border-color: transparent;
+}
